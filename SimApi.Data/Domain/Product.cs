@@ -10,16 +10,18 @@ namespace SimApi.Data;
 public class Product : BaseModel
 {
     public int CategoryId { get; set; }
+    public Category Category { get; set; }
     public string Name { get; set; }
     public string Url { get; set; }
     public string Tag { get; set; }
-
 }
 
 public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
+        builder.HasKey(x => x.Id);
+
         builder.Property(x => x.Id).IsRequired(true).UseIdentityColumn();
         builder.Property(x => x.CreatedAt).IsRequired(false);
         builder.Property(x => x.CreatedBy).IsRequired(false).HasMaxLength(30);
@@ -32,5 +34,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(x => x.CategoryId).IsRequired(true);
 
         builder.HasIndex(x => x.Name).IsUnique(true);
+
+        builder.HasOne(p => p.Category).WithMany(c => c.Products).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Restrict);
     }
 }

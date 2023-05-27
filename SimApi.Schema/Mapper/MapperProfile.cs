@@ -12,18 +12,6 @@ public class MapperProfile : Profile
 
         CreateMap<Product, ProductResponse>();
         CreateMap<ProductRequest, Product>();
-
-        CreateMap<User, UserResponse>();
-        CreateMap<UserRequest, User>();
-
-        CreateMap<Customer, CustomerResponse>();
-        CreateMap<CustomerRequest, Customer>();
-
-        CreateMap<Account, AccountResponse>();
-        CreateMap<AccountRequest, Account>();
-
-        CreateMap<Transaction, TransactionResponse>();
-        CreateMap<TransactionRequest, Transaction>();
     }
 
 

@@ -8,6 +8,5 @@ public static class RepositoryExtension
     {
         services.AddScoped<ICategoryRepository,CategoryRepository>();
         services.AddScoped<IProductRepository,ProductRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
     }
 }

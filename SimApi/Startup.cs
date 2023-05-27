@@ -12,13 +12,13 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
-    public static JwtConfig JwtConfig { get; private set; }
+    public static JwtConfig jwtConfig { get; private set; }
 
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
 
-        JwtConfig = Configuration.GetSection("JwtConfig").Get<JwtConfig>();
+        jwtConfig = Configuration.GetSection("JwtConfig").Get<JwtConfig>();
         services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
         services.AddCustomSwaggerExtension();
@@ -26,9 +26,6 @@ public class Startup
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddMapperExtension();
         services.AddRepositoryExtension();
-        services.AddServiceExtension();
-        services.AddJwtExtension();
-
     }
 
 

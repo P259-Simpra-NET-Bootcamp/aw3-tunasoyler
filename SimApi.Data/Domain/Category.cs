@@ -11,13 +11,15 @@ public class Category : BaseModel
 {
     public string Name { get; set; }
     public int Order { get; set; }
-
+    public ICollection<Product> Products { get; set; }
 }
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
+        builder.HasKey(x => x.Id);
+
         builder.Property(x => x.Id).IsRequired(true).UseIdentityColumn();
         builder.Property(x => x.CreatedAt).IsRequired(false);
         builder.Property(x => x.CreatedBy).IsRequired(false).HasMaxLength(30);
